@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: banking-frontend
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
+reactive-feign:
+  client:
+    auth-api:
+     url: http://localhost:8000/client
+logging:
+  level:
+    root: debug

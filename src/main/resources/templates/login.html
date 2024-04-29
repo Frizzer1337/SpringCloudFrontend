@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{style/style.css}">
+</head>
+<body class="body">
+<!--    <div th:insert="~{fragments/debugTable.html}"></div>-->
+    <header th:text="${#ctx.session.statusCode}" th:insert="~{fragments/header.html}"></header>
+    <main class="main">
+        <div class="main-login-form">
+            <form th:action="@{/login}" th:object="${loginDto}" method="post">
+                Phone number:
+                <input type="text" th:field="*{phone}" placeholder="+375XXXXXXXXX"/>
+                Password:
+                <input type="password" th:field="*{password}" placeholder="*******">
+                <input type="submit">
+            </form>
+        </div>
+    </main>
+    <footer th:insert="~{fragments/footer.html}"></footer>
+</body>
+</html>

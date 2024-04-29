@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{style/style.css}">
+</head>
+<body class="body">
+   <header th:insert="~{fragments/header.html}"></header>
+    <main class="main">
+        <div class="main-big-text"> Credit products You will enjoy </div>
+        <div class="main-small-text">Take a look at our best offers</div>
+        <a th:href="@{/}"><div class="apply-button">Apply to credit</div></a>
+        <div class="main-img-div"><img th:src="@{/img/card.png}" class="main-img" alt="credit-ad"></div>
+    </main>
+    <footer th:insert="~{fragments/footer.html}"></footer>
+</body>
+</html>

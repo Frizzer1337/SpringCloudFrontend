@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head><title>Header</title></head>
+<body>
+<header class="header">
+    <div class="header-item">
+        <a th:href="@{/}"><img class="header-logo" th:src="@{/img/logo.png}" alt="logo"></a>
+    </div>
+    <div class="header-item">
+        About us
+    </div>
+    <div class="header-item">
+        Our products
+    </div>
+    <div class="sign-in header-item">
+        <a th:href="@{/login}">My account</a>
+    </div>
+    <a th:href="@{/login}"><img th:src="@{/img/login.png}" alt="login" class="header-icon"></a>
+</header>
+</body>
+</html>

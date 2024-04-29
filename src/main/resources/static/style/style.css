@@ -1,0 +1,125 @@
+@import url(https://db.onlinewebfonts.com/c/53687ffc3a31b16cad27ce741da17911?family=Tinkoff+Sans);
+
+html{
+    all: unset;
+}
+
+a{
+    color: unset;
+    text-decoration: none;
+}
+
+.body{
+    font-family: "Tinkoff Sans", ui-sans-serif;
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+}
+
+.header-logo{
+    height: 100px;
+}
+
+.header-item{
+    margin-left: 20px;
+}
+
+.sign-in{
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.header-icon{
+    height: 30px;
+}
+
+.main{
+    background: #f6f7f8 ;
+}
+
+.main-big-text{
+    color: #000000cc;
+    width: 330px;
+    font: 700 44px/48px
+    dsHeading,
+    "dsHeading Fallback",-apple-system,
+    BlinkMacSystemFont,"Segoe UI",
+    Roboto,"Helvetica Neue",sans-serif;
+    padding-top: 100px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.main-small-text{
+    width: 300px;
+    font: 300 24px/28px
+    dsHeading,
+    "dsHeading Fallback",-apple-system,
+    BlinkMacSystemFont,"Segoe UI",
+    Roboto,"Helvetica Neue",sans-serif;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.apply-button{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+
+    margin-top: 40px;
+    padding: 18px 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+
+    color: #333;
+    background-color: #ffcd33;
+}
+
+.main-img{
+    height: 500px;
+}
+
+.main-img-div{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-login-form{
+    padding: 100px 100px 100px 100px;
+    width: 200px;
+    margin: 300px auto 300px auto;
+    background-color: white;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, .8) !important;
+}
+
+.footer-text{
+    color: #f6f7f8;
+}
