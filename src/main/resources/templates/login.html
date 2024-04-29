@@ -3,22 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{style/style.css}">
+    <link rel="stylesheet" th:href="@{/style/style.css}">
 </head>
 <body class="body">
-<!--    <div th:insert="~{fragments/debugTable.html}"></div>-->
-    <header th:text="${#ctx.session.statusCode}" th:insert="~{fragments/header.html}"></header>
-    <main class="main">
-        <div class="main-login-form">
-            <form th:action="@{/login}" th:object="${loginDto}" method="post">
-                Phone number:
-                <input type="text" th:field="*{phone}" placeholder="+375XXXXXXXXX"/>
-                Password:
-                <input type="password" th:field="*{password}" placeholder="*******">
-                <input type="submit">
-            </form>
-        </div>
-    </main>
-    <footer th:insert="~{fragments/footer.html}"></footer>
+<div th:insert="~{fragments/debugTable.html}"></div>
+<header th:text="${#ctx.session.statusCode}" th:insert="~{fragments/header.html}"></header>
+<main class="main main-login">
+    <div class="main-login-form">
+        <form th:unless="${#ctx.session?.statusCode?.name() eq 'PHONE_OK'} or
+                         ${#ctx.session?.statusCode?.name() eq 'INVALID_PASSWORD'}"
+              class="login-form" th:action="@{/login/phone}"
+              th:object="${phoneLoginDto}" method="post">
+            <div>
+                <div>
+                    <input class="text-input" type="text" th:field="*{phone}" placeholder="Phone"/>
+                </div>
+            </div>
+            <input class="form-submit-button" type="submit" value=">">
+        </form>
+        <form th:if="${#ctx.session?.statusCode?.name() eq 'PHONE_OK'} or
+                     ${#ctx.session?.statusCode?.name() eq 'INVALID_PASSWORD'}"
+              class="login-form" th:action="@{/login}"
+              th:object="${loginDto}" method="post">
+            <div>
+                <div>
+                    <input type="hidden" th:field="*{phone}" th:value="${phoneLoginDto?.phone}">
+                    <input class="text-input" type="password" th:field="*{password}" placeholder="Password">
+                </div>
+            </div>
+            <input class="form-submit-button" type="submit" value=">">
+        </form>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer.html}"></footer>
 </body>
 </html>

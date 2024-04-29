@@ -106,12 +106,58 @@ a{
     margin-right: auto;
 }
 
+.main-login{
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
 .main-login-form{
-    padding: 100px 100px 100px 100px;
-    width: 200px;
-    margin: 300px auto 300px auto;
+    padding: 30px 30px 30px 30px;
+    width: 400px;
+    margin: 0 auto 0 auto;
     background-color: white;
 }
+
+.login-form{
+    display: flex;
+}
+
+.form-submit-button {
+    margin-top: 8px;
+    background: #fddb2d;
+    color: #000000;
+    border: 1px solid #eee;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow: none;
+}
+.form-submit-button:hover {
+    background: #fdb42d;
+    color: #000000;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow: none;
+}
+
+.text-input{
+    text-indent: 10px;
+    height: 56px;
+    width: 300px;
+    margin-top: 10px;
+    margin-right: 15px;
+    border: 0;
+    border-radius: 8px;
+    outline: none;
+    background-color: rgba(36, 74, 127, .06);
+    transition-duration: .25s;
+    transition-property: background-color;
+    transition-timing-function: ease;
+}
+
 
 .footer{
     display: flex;

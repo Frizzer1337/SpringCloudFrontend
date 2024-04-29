@@ -1,6 +1,7 @@
 package com.frizzer.frontend.client
 
 import com.frizzer.frontend.model.LoginDto
+import com.frizzer.frontend.model.PhoneLoginDto
 import feign.Headers
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.RequestMapping
@@ -14,4 +15,8 @@ interface AuthClient{
     @RequestMapping(value = ["/login"],method = [RequestMethod.POST])
     @Headers("Content-Type: application/json")
     fun login(loginDto: Mono<LoginDto>): Mono<Boolean>
+
+    @RequestMapping(value = ["/login/phone"],method = [RequestMethod.POST])
+    @Headers("Content-Type: application/json")
+    fun phoneLogin(phoneLoginDto: Mono<PhoneLoginDto>): Mono<Boolean>
 }
