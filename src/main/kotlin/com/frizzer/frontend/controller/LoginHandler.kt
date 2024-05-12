@@ -4,11 +4,14 @@ import com.frizzer.frontend.client.AuthClient
 import com.frizzer.frontend.controller.model.LOGIN_DTO
 import com.frizzer.frontend.controller.model.PHONE_LOGIN_DTO
 import com.frizzer.frontend.controller.routes.LOGIN
+import com.frizzer.frontend.controller.session.LOGGED_IN
+import com.frizzer.frontend.controller.session.PHONE
 import com.frizzer.frontend.controller.session.STATUS_CODE
-import com.frizzer.frontend.model.LoginDto
-import com.frizzer.frontend.model.PhoneLoginDto
+import com.frizzer.frontend.model.login.LoginDto
+import com.frizzer.frontend.model.login.PhoneLoginDto
 import com.frizzer.frontend.model.StatusCode
 import com.frizzer.frontend.validator.LoginValidator
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -62,8 +65,15 @@ class LoginHandler(
             .filter { it == StatusCode.OK }
             .flatMap { login(loginDto) }
             .doOnNext { session.attributes[STATUS_CODE] = it }
+            .filter { it == StatusCode.OK }
+            .doOnNext { addLoginToSession(session, loginDto) }
         model.addAttribute(loginStatus)
         return loginStatus.then(Mono.just(LOGIN))
+    }
+
+    private fun addLoginToSession(session: WebSession, login: LoginDto) {
+        session.attributes[LOGGED_IN] = true
+        session.attributes[PHONE] = login.phone
     }
 
     private fun phoneLogin(phoneLoginDto: PhoneLoginDto): Mono<StatusCode> {
@@ -74,6 +84,7 @@ class LoginHandler(
                     false -> StatusCode.NOT_FOUND
                 }
             }
+            .doOnError { log.error("Error while phone login", it) }
             .onErrorReturn(StatusCode.INTERNAL_ERROR)
     }
 
@@ -86,6 +97,10 @@ class LoginHandler(
                 }
             }
             .onErrorReturn(StatusCode.INTERNAL_ERROR)
+    }
+
+    private companion object{
+        private val log = LoggerFactory.getLogger(LoginHandler::class.java)
     }
 }
 

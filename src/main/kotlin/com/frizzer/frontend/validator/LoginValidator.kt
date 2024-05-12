@@ -1,7 +1,7 @@
 package com.frizzer.frontend.validator
 
-import com.frizzer.frontend.model.LoginDto
-import com.frizzer.frontend.model.PhoneLoginDto
+import com.frizzer.frontend.model.login.LoginDto
+import com.frizzer.frontend.model.login.PhoneLoginDto
 import com.frizzer.frontend.model.StatusCode
 import org.springframework.stereotype.Component
 

@@ -12,10 +12,15 @@
     <div class="header-item">
         Our products
     </div>
-    <div class="sign-in header-item">
-        <a th:href="@{/login}">My account</a>
+    <div th:unless="${#ctx.session.loggedIn}" class="login-header header-item">
+        <div  class="sign-in header-item">
+            <a th:href="@{/login}">My account</a>
+        </div>
+        <a th:href="@{/login}"><img th:src="@{/img/login.png}" alt="login" class="header-icon"></a>
     </div>
-    <a th:href="@{/login}"><img th:src="@{/img/login.png}" alt="login" class="header-icon"></a>
+    <div th:if="${#ctx.session.loggedIn}"  class="success-login-header">
+        <a th:text="${#ctx.session.phone}" th:href="@{/account}"></a>
+    </div>
 </header>
 </body>
 </html>

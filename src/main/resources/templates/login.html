@@ -6,12 +6,15 @@
     <link rel="stylesheet" th:href="@{/style/style.css}">
 </head>
 <body class="body">
-<div th:insert="~{fragments/debugTable.html}"></div>
-<header th:text="${#ctx.session.statusCode}" th:insert="~{fragments/header.html}"></header>
+<!--<div th:insert="~{fragments/debugTable.html}"></div>-->
+<header th:insert="~{fragments/header.html}"></header>
 <main class="main main-login">
+    <div class="status-code" th:if="${#ctx.session?.statusCode?.code >= 400}"
+         th:text="${#ctx.session?.statusCode?.message}"></div>
     <div class="main-login-form">
         <form th:unless="${#ctx.session?.statusCode?.name() eq 'PHONE_OK'} or
-                         ${#ctx.session?.statusCode?.name() eq 'INVALID_PASSWORD'}"
+                         ${#ctx.session?.statusCode?.name() eq 'INVALID_PASSWORD'} or
+                         ${#ctx.session?.statusCode?.name() eq 'OK'}"
               class="login-form" th:action="@{/login/phone}"
               th:object="${phoneLoginDto}" method="post">
             <div>
@@ -33,6 +36,9 @@
             </div>
             <input class="form-submit-button" type="submit" value=">">
         </form>
+        <div class="success-login" th:if="${#ctx.session?.statusCode?.name() eq 'OK'}">
+            You successfully logged in
+        </div>
     </div>
 </main>
 <footer th:insert="~{fragments/footer.html}"></footer>

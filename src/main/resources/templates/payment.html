@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+</head>
+<body class="body">
+<div th:insert="~{fragments/debugTable.html}"></div>
+<header th:insert="~{fragments/header.html}"></header>
+<main class="main">
+    <div>
+        <div th:unless="${paymentStatusCode?.name() == 'CARD_OK'}">
+            <form class="pay-form" th:object="${cardDto}" th:action="@{/payment/{creditId}(creditId = ${creditId})}" th:method="post">
+                <span class="pay-form-text">Insert card data</span>
+                <input class="text-input" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}"
+                       autocomplete="cc-number" maxlength="19" th:field="*{number}" placeholder="Card number">
+                <div>
+                    <input class="pay-text-input" type="text" th:field="*{expiryDate}" placeholder="Expiry date">
+                    <input class="pay-text-input" type="password" th:field="*{cvv}" placeholder="CVV">
+                    <input class="pay-submit-button" type="submit" value=">">
+                </div>
+                <input class="text-input" type="text" th:field="*{cardholderName}" placeholder="Cardholder name">
+            </form>
+        </div>
+        <div th:if="${paymentStatusCode?.name() == 'CARD_OK'}">
+            <form class="pay-second-form" th:object="${paymentDto}" th:action="@{/payment/amount}" th:method="post">
+                <span class="pay-form-text">Insert amount</span>
+                <div>
+                    <input type="hidden" th:field="*{phone}" th:value="${paymentDto?.phone}">
+                    <input type="hidden" th:field="*{creditId}" th:value="${paymentDto?.creditId}">
+                    <input class="text-input" placeholder="Amount" th:field="*{amount}">
+                    <input class="pay-submit-button" type="submit" value=">">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer.html}"></footer>
+</body>
+</html>

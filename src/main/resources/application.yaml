@@ -13,8 +13,8 @@ spring:
         period: 0
 reactive-feign:
   client:
-    auth-api:
-     url: http://localhost:8000/client
-logging:
-  level:
-    root: debug
+    gateway-api:
+      url: http://localhost:8000
+#logging:
+#  level:
+#    root: debug

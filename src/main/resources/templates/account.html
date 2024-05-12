@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+</head>
+<body class="body">
+<div th:insert="~{fragments/debugTable.html}"></div>
+<header th:insert="~{fragments/header.html}"></header>
+<main class="main">
+    <div class="credit">
+        <div class="credit-table-name">Credits</div>
+        <table th:value="@{/credit/phone}" th:method="post" class="credit-table">
+            <tr class="credit-columns-names">
+                <th>Name</th>
+                <th>Percent</th>
+                <th>Balance</th>
+                <th>Penalty</th>
+                <th>Last payment</th>
+                <th></th>
+            </tr>
+            <tr th:each="credit: ${credits}" class="credit-columns">
+                <td><p th:text="${credit.type}"></p></td>
+                <td><p th:text="${credit.percent}"></p></td>
+                <td><p th:text="${credit.creditBalance}"></td>
+                <td><p th:text="${credit.penalty}"></td>
+                <td><p th:text="${credit.lastPaymentDate}"></td>
+                <td> <a th:href="@{/payment/{id}(id=${credit.id})}"><div class="pay-button">Pay</div></a></td>
+            </tr>
+        </table>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer.html}"></footer>
+</body>
+</html>
